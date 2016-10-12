@@ -1,0 +1,15 @@
+/* Empty. Add your own CSS if you like */
+.logo-login{
+	 display: block;
+    margin: 0 auto;
+    width: 160px;
+}
+
+.bg-img{
+	background: url("../img/bg/login-bg.gif") no-repeat center center fixed; 
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        height: 100%;
+        opacity: 0.3;
+}

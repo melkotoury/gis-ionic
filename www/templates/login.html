@@ -1,0 +1,30 @@
+<ion-view view-title="Login">
+    <ion-content >
+
+
+        <img class="logo-login" ng-src="../img/logo/logo.jpg" alt="">
+    
+        <div class="list list-inset">
+            <label class="item item-input">
+                <span class="input-label">
+                    Username
+                </span>
+                <input type="text" ng-model='username'>
+                </input>
+            </label>
+            <label class="item item-input">
+                <span class="input-label">
+                    Password
+                </span>
+                <input type="password" ng-model='password'>
+                </input>
+            </label>
+            <button class="button button-block button-positive" ng-click="onSignInClicked(username, password)">
+           Sign in
+        </button>
+        </div>
+        
+        <span>{{result}}</span>
+
+    </ion-content>
+</ion-view>
