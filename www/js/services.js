@@ -4,10 +4,12 @@ mgisApp.factory('userService', function($http) {
   var users = [];
 
   return {
-    getUsers: function(){
-      return $http.get("http://www.al-almanya.com/alalmanya-api/login-route-api").then(function(response){
-        users = response;
-        return users;
+    getUser: function(username,password,auth){
+      var servicebase = "http://www.al-almanya.com/alalmanya-api/login-route-api?";
+      return $http.get(servicebase + "username="+username+"&password=" + password + "&auth="+auth).then(function(response){
+        //http://www.al-almanya.com/alalmanya-api/login-route-api?username=301&password=123456&auth=student
+        user = response;
+        return user;
       });
     }
   }

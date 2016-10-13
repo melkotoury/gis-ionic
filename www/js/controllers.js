@@ -1,7 +1,12 @@
 var mgisApp = angular.module('mgisApp.controllers', []);
 
 
-mgisApp.controller('LoginCtrl', function($scope, $stateParams, userService, $ionicPopup) {
+
+
+mgisApp.controller('LoginCtrl', function($scope,$state, $stateParams, userService, $ionicPopup) {
+
+
+
   // An alert dialog
   $scope.showAlert = function() {
     var alertPopup = $ionicPopup.alert({
@@ -12,18 +17,51 @@ mgisApp.controller('LoginCtrl', function($scope, $stateParams, userService, $ion
       console.log('you have accepted the alert');
     });
   }
-  userService.getUsers().then(function(users){
-    //users is an array of user objects
-    $scope.onSignInClicked = function(username, password) {
-      if (username == users.email && password == users.password && users.status === 1) {
-        localStorage.setItem('loggedIn', true);
-        $state.go('tab.dash');
-      } else {
-        $scope.showAlert();
-      }
+
+
+
+
+    $scope.onSignInClicked = function(username,password,auth) {
+
+
+      var inputUsername=username,
+        inputPassword=password,
+        inputAuth=auth;
+
+      console.log("Input Fields:"+ inputUsername + "- "+inputPassword+ "- "+inputAuth);
+      // var user = userService.getUser(inputUsername,inputPassword,inputAuth);
+      userService.getUser(inputUsername,inputPassword,inputAuth).then(function(user){
+        //user
+        var serviceUsername=user.data.username,
+          servicePassword=user.data.password,
+          serviceAuth=user.data.auth;
+        console.log("Service Fields:"+ serviceUsername + "- "+servicePassword+ "- "+serviceAuth);
+        console.log("Service ID: "+ user.id);
+        console.log(user);
+        if (inputUsername == serviceUsername && inputPassword == servicePassword && inputAuth == serviceAuth) {
+          localStorage.setItem('loggedIn', true);
+          $state.go('tab.dash');
+        } else {
+          $scope.showAlert();
+        }
+
+      });
+      // var serviceUsername=user.username,
+      //     servicePassword=user.password,
+      //     serviceAuth=user.auth;
+      // console.log("Service Fields:"+ serviceUsername + "- "+servicePassword+ "- "+serviceAuth);
+      // console.log("Service ID: "+ user.id);
+      // console.log(user);
+
+      // if (inputUsername == serviceUsername && inputPassword == servicePassword && inputAuth == serviceAuth) {
+      //   localStorage.setItem('loggedIn', true);
+      //   $state.go('tab.dash');
+      // } else {
+      //   $scope.showAlert();
+      // }
     }
 
-  });
+
 });
 
 // mgisApp.controller('LoginCtrl', function($scope, $state, $ionicPopup){
