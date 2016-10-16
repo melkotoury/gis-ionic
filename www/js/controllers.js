@@ -1,6 +1,34 @@
 var mgisApp = angular.module('mgisApp.controllers', []);
 
+mgisApp.controller('MessageCtrl',  function($scope,Chats,userService){
+  var auth = localStorage.getItem("auth");
+  var id = localStorage.getItem("id");
+  var username = localStorage.getItem("username");
+  var auth = localStorage.getItem("auth");
+  var password = localStorage.getItem("password");
 
+
+  // var api_token = localStorage.getItem("api_token");
+  userService.getUser(username,password,auth).then(function(user){
+    var api_token = user.data.api_token;
+    console.log("russia");
+    console.log(api_token);
+    Chats.getChats(auth,id,api_token).then(function(chats){
+    $scope.chats = chats.data.messages;
+            console.log(chats.data.messages);
+        // console.log(auth);
+        // console.log(chats);
+        // console.log(chats);
+        // console.log(chats);
+        // console.log(chats);
+
+        // console.log(chats);
+
+    //console.log("subject: "+chats.data.messages[0].subject);
+  });
+  });
+  
+});
 
 
 mgisApp.controller('LoginCtrl', function($scope,$state, $stateParams, userService, $ionicPopup) {
@@ -37,12 +65,15 @@ mgisApp.controller('LoginCtrl', function($scope,$state, $stateParams, userServic
           serviceAuth=user.data.auth;
         console.log("Service Fields:"+ serviceUsername + "- "+servicePassword+ "- "+serviceAuth);
         console.log("Service ID: "+ user.id);
+        console.log("user object");
         console.log(user);
         if (inputUsername == serviceUsername && inputPassword == servicePassword && inputAuth == serviceAuth) {
           localStorage.setItem('loggedIn', true);
           localStorage.setItem('id',user.data.id);
+          localStorage.setItem('username',user.data.username);
           localStorage.setItem('fullname',user.data.fullname);
           localStorage.setItem('auth',user.data.auth);
+          localStorage.setItem('password',user.data.password);
           localStorage.setItem('api_token',user.data.api_token);
           localStorage.setItem('avatar',user.data.avatar);
 
@@ -103,20 +134,20 @@ mgisApp.controller('DashCtrl', function($scope, $rootScope ,userService) {
 
 });
 
-mgisApp.controller('ChatsCtrl', function($scope, Chats) {
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+// mgisApp.controller('ChatsCtrl', function($scope, Chats) {
+//   // With the new view caching in Ionic, Controllers are only called
+//   // when they are recreated or on app start, instead of every page change.
+//   // To listen for when this page is active (for example, to refresh data),
+//   // listen for the $ionicView.enter event:
+//   //
+//   //$scope.$on('$ionicView.enter', function(e) {
+//   //});
 
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  };
-});
+//   $scope.chats = Chats.all();
+//   $scope.remove = function(chat) {
+//     Chats.remove(chat);
+//   };
+// });
 
 mgisApp.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
   $scope.chat = Chats.get($stateParams.chatId);

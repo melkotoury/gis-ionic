@@ -62,7 +62,7 @@ mgisApp.config(function($stateProvider, $urlRouterProvider) {
       views: {
         'tab-chats': {
           templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
+          controller: 'MessageCtrl'
         }
       }
     })
