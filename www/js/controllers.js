@@ -40,6 +40,12 @@ mgisApp.controller('LoginCtrl', function($scope,$state, $stateParams, userServic
         console.log(user);
         if (inputUsername == serviceUsername && inputPassword == servicePassword && inputAuth == serviceAuth) {
           localStorage.setItem('loggedIn', true);
+          localStorage.setItem('id',user.data.id);
+          localStorage.setItem('fullname',user.data.fullname);
+          localStorage.setItem('auth',user.data.auth);
+          localStorage.setItem('api_token',user.data.api_token);
+          localStorage.setItem('avatar',user.data.avatar);
+
           $state.go('tab.dash');
         } else {
           $scope.showAlert();
@@ -87,11 +93,14 @@ mgisApp.controller('LoginCtrl', function($scope,$state, $stateParams, userServic
 // });
 
 
-mgisApp.controller('DashCtrl', function($scope ,userService) {
-  userService.getUsers().then(function(users){
-    $scope.fullname = users.fullname;
-    $scope.imgURL = users.avatar;
-  });
+mgisApp.controller('DashCtrl', function($scope, $rootScope ,userService) {
+ var fullname = localStorage.getItem("fullname");
+  var avatar = localStorage.getItem("avatar");
+
+  console.log("current user is= "+fullname);
+  $scope.fullname=fullname;
+  $scope.imgURL=avatar;
+
 });
 
 mgisApp.controller('ChatsCtrl', function($scope, Chats) {
