@@ -32,7 +32,8 @@ mgisApp.factory('Chats', function($http) {
        chats = response;
        return chats;
       });
-    }
+    },
+    
   }
 });
 

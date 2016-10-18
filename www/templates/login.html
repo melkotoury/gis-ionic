@@ -1,36 +1,35 @@
 <ion-view view-title="Login">
-    <ion-content >
+    <ion-content  class="bg">
 
 
         <img class="logo-login" ng-src="../img/logo/logo.jpg" alt="">
 
         <div class="list list-inset">
-            <label class="item item-input">
+            <label class="item item-input item-floating-label">
                 <span class="input-label">
                     Username
                 </span>
-                <input type="text" ng-model='username'>
+                <input type="text" ng-model='username' placeholder="Username">
                 </input>
             </label>
-            <label class="item item-input">
+            <label class="item item-input item-floating-label">
                 <span class="input-label">
                     Password
                 </span>
-                <input type="password" ng-model='password'>
+                <input type="password" ng-model='password' placeholder="Password">
                 </input>
             </label>
 
 
-          <!--<label >-->
-            <!--<div class="input-label">-->
-
-            <!--</div>-->
-            <select class="item item-input " name="singleSelect" ng-model='auth'>
-              <option value=""> ---Login As--- </option>
-              <option value="student" selected >Student</option>
-              <option value="staff">Staff</option>
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Login As:
+            </div>
+            <select  name="singleSelect" ng-model='auth'>
+              <option value="student" >Student</option>
+              <option value="staff" >Staff</option>
             </select>
-          <!--</label>-->
+          </label>
             <button class="button button-block button-positive" ng-click="onSignInClicked(username,password,auth)">
            Sign in
         </button>

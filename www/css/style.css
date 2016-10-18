@@ -1,15 +1,31 @@
 /* Empty. Add your own CSS if you like */
+@font-face {
+  font-family: 'Exo2';
+  src: url("../fonsts/Exo2-Regular.otf"); 
+   src: url("../fonsts/Exo2-Regular.otf?v=2.0.1");
+  src: url("../fonsts/Exo2-Regular.otf?v=2.0.1#iefix") format("embedded-opentype"), url("../fonsts/Exo2-Regular.otf?v=2.0.1") format("truetype"), url("../fonsts/Exo2-Regular.otf?v=2.0.1") format("woff"), url("../fonsts/Exo2-Regular.otf") format("woff"), url("../fonts/ionicons.svg?v=2.0.1#Ionicons") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+*{
+	font-family: 'Exo2', Fallback, sans-serif;
+}
 .logo-login{
 	 display: block;
     margin: 0 auto;
     width: 160px;
 }
 
-.bg-img{
-	background: url("../img/bg/login-bg.gif") no-repeat center center fixed; 
+/*.bg{
+background: url("../img/bg/login-bg.gif") no-repeat center center fixed; 
         -webkit-background-size: cover;
         -moz-background-size: cover;
         background-size: cover;
         height: 100%;
-        opacity: 0.3;
+        background-color: transparent;
+
+}*/
+
+.bg-img{
+	
 }

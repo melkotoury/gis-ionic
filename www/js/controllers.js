@@ -15,19 +15,42 @@ mgisApp.controller('MessageCtrl',  function($scope,Chats,userService){
     console.log(api_token);
     Chats.getChats(auth,id,api_token).then(function(chats){
     $scope.chats = chats.data.messages;
-            console.log(chats.data.messages);
-        // console.log(auth);
-        // console.log(chats);
-        // console.log(chats);
-        // console.log(chats);
-        // console.log(chats);
-
-        // console.log(chats);
-
-    //console.log("subject: "+chats.data.messages[0].subject);
+            console.log(chats.data.messages[0]);
   });
   });
   
+});
+
+mgisApp.controller('ChatDetailCtrl', function($scope, $stateParams,userService, Chats) {
+  //$scope.chatDetails =$stateParams.chatId;
+  console.log("StateParams: ");
+  var chatID = $stateParams.chatId;
+  var auth = localStorage.getItem("auth");
+  var id = localStorage.getItem("id");
+  var username = localStorage.getItem("username");
+  var auth = localStorage.getItem("auth");
+  var password = localStorage.getItem("password");
+
+
+  // var api_token = localStorage.getItem("api_token");
+  userService.getUser(username,password,auth).then(function(user){
+    var api_token = user.data.api_token;
+    console.log("russia");
+    console.log(api_token);
+    Chats.getChats(auth,id,api_token).then(function(chats){
+      var messages = chats.data.messages;
+  for (var i = 0; i <= messages.length; i--) {
+    if (chats.data.messages[i].id==chatID) {
+      // statement
+      $scope.chatDetails = chats.data.messages[i];
+    } else {
+      // statement
+    }
+  }
+});
+  console.log(chatID);
+})
+
 });
 
 
@@ -149,9 +172,7 @@ mgisApp.controller('DashCtrl', function($scope, $rootScope ,userService) {
 //   };
 // });
 
-mgisApp.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
+
 
 mgisApp.controller('AccountCtrl', function($scope) {
   $scope.settings = {
