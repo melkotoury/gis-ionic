@@ -15,7 +15,7 @@ mgisApp.controller('MessageCtrl',  function($scope,Chats,userService){
     console.log(api_token);
     Chats.getChats(auth,id,api_token).then(function(chats){
     $scope.chats = chats.data.messages;
-            console.log(chats.data.messages[0]);
+            console.log(chats.data.messages[1].id);
   });
   });
   
@@ -39,7 +39,8 @@ mgisApp.controller('ChatDetailCtrl', function($scope, $stateParams,userService, 
     console.log(api_token);
     Chats.getChats(auth,id,api_token).then(function(chats){
       var messages = chats.data.messages;
-  for (var i = 0; i <= messages.length; i--) {
+  for (var i = 0; i <= messages.length-1; i++) {
+    console.log("index is :"+i);
     if (chats.data.messages[i].id==chatID) {
       // statement
       $scope.chatDetails = chats.data.messages[i];
