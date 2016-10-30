@@ -11,22 +11,26 @@ mgisApp.controller('MessageCtrl',  function($scope,Chats,userService){
   // var api_token = localStorage.getItem("api_token");
   userService.getUser(username,password,auth).then(function(user){
     var api_token = user.data.api_token;
-    console.log("russia");
+    console.log("token in messages");
     console.log(api_token);
     Chats.getChats(auth,id,api_token).then(function(chats){
     $scope.chats = chats.data.messages;
-            console.log(chats.data.messages[1].id);
+    console.log("hamborgar");
+            console.log(chats.data.messages[0].id);
   });
   });
-  
+
 });
 
 mgisApp.controller('ChatDetailCtrl', function($scope, $stateParams,userService, Chats) {
   //$scope.chatDetails =$stateParams.chatId;
   console.log("StateParams: ");
   var chatID = $stateParams.chatId;
+  console.log("this is the chat id");
+  console.log(chatID);
   var auth = localStorage.getItem("auth");
   var id = localStorage.getItem("id");
+
   var username = localStorage.getItem("username");
   var auth = localStorage.getItem("auth");
   var password = localStorage.getItem("password");
@@ -35,12 +39,14 @@ mgisApp.controller('ChatDetailCtrl', function($scope, $stateParams,userService, 
   // var api_token = localStorage.getItem("api_token");
   userService.getUser(username,password,auth).then(function(user){
     var api_token = user.data.api_token;
-    console.log("russia");
+    console.log("token in details");
     console.log(api_token);
     Chats.getChats(auth,id,api_token).then(function(chats){
       var messages = chats.data.messages;
   for (var i = 0; i <= messages.length-1; i++) {
     console.log("index is :"+i);
+    console.log("id in details");
+  console.log(id);
     if (chats.data.messages[i].id==chatID) {
       // statement
       $scope.chatDetails = chats.data.messages[i];
@@ -49,7 +55,7 @@ mgisApp.controller('ChatDetailCtrl', function($scope, $stateParams,userService, 
     }
   }
 });
-  console.log(chatID);
+  // console.log(chatID);
 })
 
 });
@@ -175,8 +181,19 @@ mgisApp.controller('DashCtrl', function($scope, $rootScope ,userService) {
 
 
 
-mgisApp.controller('AccountCtrl', function($scope) {
+mgisApp.controller('AccountCtrl', function($scope,$state) {
   $scope.settings = {
     enableFriends: true
+  };
+  $scope.logout = function (){
+    localStorage.removeItem('api_token');
+    localStorage.removeItem('auth');
+    localStorage.removeItem('avatar');
+    localStorage.removeItem('fullname');
+    localStorage.removeItem('id');
+    localStorage.removeItem('loggedIn');
+    localStorage.removeItem('password');
+    localStorage.removeItem('username');
+  $state.go('login');
   };
 });

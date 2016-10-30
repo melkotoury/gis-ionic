@@ -1,9 +1,12 @@
 <ion-view view-title="Login">
-    <ion-content  class="bg">
+    <ion-content  >
 
 
         <img class="logo-login" ng-src="../img/logo/logo.jpg" alt="">
 
+
+
+<div class="loginform">
         <div class="list list-inset">
             <label class="item item-input item-floating-label">
                 <span class="input-label">
@@ -26,18 +29,19 @@
               Login As:
             </div>
             <select  name="singleSelect" ng-model='auth'>
-              <option value="student" >Student</option>
+              <option value="student" selected>Student</option>
               <option value="staff" >Staff</option>
             </select>
           </label>
-            <button class="button button-block button-positive" ng-click="onSignInClicked(username,password,auth)">
+            <button class="button button-block button-assertive" ng-click="onSignInClicked(username,password,auth)">
            Sign in
         </button>
           <!--<input class="button button-block button-positive" type="submit" name="submit" value="Login">-->
 
         </div>
+        </div>
 
-        <span>{{result}}</span>
+
 
     </ion-content>
 </ion-view>

@@ -1,4 +1,4 @@
-<ion-view view-title="Chats">
+<ion-view view-title="Messages">
   <ion-content>
     <ion-list>
       <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats track by chat.id" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
@@ -9,9 +9,9 @@
         <p>{{chat.created_at}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
 
-        <ion-option-button class="button-assertive" ng-click="remove(chat)">
+        <!-- <ion-option-button class="button-assertive" ng-click="remove(chat)">
           Delete
-        </ion-option-button>
+        </ion-option-button> -->
       </ion-item>
     </ion-list>
   </ion-content>
