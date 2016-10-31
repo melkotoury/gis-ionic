@@ -16,6 +16,17 @@
     width: 160px;
 }
 
+.redText{
+  color:red;
+}
+
+.avatarDetails{
+  width: 64px;
+height: 64px;
+margin: 0 42%;
+border-radius: 50%;
+}
+
 /*.bg{
     background: url(../img/bg/loginBG.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;

@@ -1,12 +1,12 @@
 <ion-view view-title="Messages">
   <ion-content>
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats track by chat.id" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
-        <img ng-src="{{chat.avatar}}">
-        <h2>{{chat.from}}</h2>
-        <p>{{chat.subject}}</p>
-        <p>{{chat.content}}</p>
-        <p>{{chat.created_at}}</p>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats   | orderBy: 'chat.created_at':true " type="item-text-wrap" href="#/tab/chats/{{chat.id}}">
+        <img  ng-src="{{chat.avatar}}">
+        <h2 class="redText">{{chat.from}}</h2>
+        <p><span class="redText">Subject:</span> {{chat.subject }}</p>
+        <p><span class="redText">Message:</span> {{chat.content }}</p>
+        <p><span class="redText">At:</span> {{chat.created_at}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
 
         <!-- <ion-option-button class="button-assertive" ng-click="remove(chat)">

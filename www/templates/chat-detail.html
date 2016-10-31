@@ -6,12 +6,12 @@
 -->
 <ion-view view-title="Message from: {{chatDetails.from}}">
   <ion-content class="padding">
-    <img ng-src="{{chatDetails.avatar}}" style="width: 64px; height: 64px; border-radius: 50%;">
+    <img class="avatarDetails" ng-src="{{chatDetails.avatar}}" >
 
-    <h3>{{chatDetails.subject}}</h3>
+    <h3>{{chatDetails.subject }}</h3>
     <p>Created at : {{chatDetails.created_at}}</p>
     <p>
-      {{chatDetails.content}}
+      {{chatDetails.content }}
     </p>
   </ion-content>
 </ion-view>

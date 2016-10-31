@@ -1,5 +1,8 @@
 var mgisApp = angular.module('mgisApp.controllers', []);
 
+
+
+
 mgisApp.controller('MessageCtrl',  function($scope,Chats,userService){
   var auth = localStorage.getItem("auth");
   var id = localStorage.getItem("id");
@@ -184,7 +187,7 @@ mgisApp.controller('DashCtrl', function($scope, $rootScope ,userService) {
 
 mgisApp.controller('AccountCtrl', function($scope,$state) {
   $scope.settings = {
-    enableFriends: true
+    enableNotifications: true
   };
   $scope.logout = function (){
     localStorage.removeItem('api_token');
