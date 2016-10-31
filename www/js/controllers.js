@@ -26,11 +26,8 @@ mgisApp.controller('ChatDetailCtrl', function($scope, $stateParams,userService, 
   //$scope.chatDetails =$stateParams.chatId;
   console.log("StateParams: ");
   var chatID = $stateParams.chatId;
-  console.log("this is the chat id");
-  console.log(chatID);
   var auth = localStorage.getItem("auth");
   var id = localStorage.getItem("id");
-
   var username = localStorage.getItem("username");
   var auth = localStorage.getItem("auth");
   var password = localStorage.getItem("password");
@@ -39,23 +36,27 @@ mgisApp.controller('ChatDetailCtrl', function($scope, $stateParams,userService, 
   // var api_token = localStorage.getItem("api_token");
   userService.getUser(username,password,auth).then(function(user){
     var api_token = user.data.api_token;
-    console.log("token in details");
+    console.log("russia");
     console.log(api_token);
     Chats.getChats(auth,id,api_token).then(function(chats){
       var messages = chats.data.messages;
-  for (var i = 0; i <= messages.length-1; i++) {
-    console.log("index is :"+i);
-    console.log("id in details");
-  console.log(id);
+      console.log("inside getChats: ");
+      console.log(chats.data.messages);
+      console.log("Messages length");
+      console.log(chats.data.messages.size);
+  for (var i = 0; i <= messages.length; i++) {
+    console.log(i);
     if (chats.data.messages[i].id==chatID) {
       // statement
       $scope.chatDetails = chats.data.messages[i];
+      console.log("from inside messageDetails: ");
+      console.log(chats.data.messages[i].id);
     } else {
       // statement
     }
   }
 });
-  // console.log(chatID);
+  console.log(chatID);
 })
 
 });
