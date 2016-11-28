@@ -110,6 +110,7 @@ mgisApp.controller('LoginCtrl', function($scope,$state, $stateParams, userServic
           localStorage.setItem('password',user.data.password);
           localStorage.setItem('api_token',user.data.api_token);
           localStorage.setItem('avatar',user.data.avatar);
+          localStorage.setItem('registration_ids',user.data.registration_ids);
 
           $state.go('tab.dash');
         } else {
